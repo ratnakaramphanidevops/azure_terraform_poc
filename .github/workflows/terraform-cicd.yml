@@ -42,6 +42,7 @@ jobs:
     # Run Terraform init
     - name: Terraform Init
       id: init
+      working-directory: ${{env.ROOT_PATH}}
       env:
         STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
         CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
@@ -49,16 +50,17 @@ jobs:
         ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        working-directory: ${{env.ROOT_PATH}}
+        
       run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP_NAME"
      #Run Terraform Plan
     - name: Terraform plan
       id: plan
+      working-directory: ${{env.ROOT_PATH}}
       env:
         ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        working-directory: ${{env.ROOT_PATH}}
+        
       run: terraform plan -no-color
 
     # Run a Terraform apply
