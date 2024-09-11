@@ -13,8 +13,8 @@ permissions:
       id-token: write
       contents: read
 jobs: 
-  Terraform-Plan:
-    name: 'Terraform Plan'
+  Terraform-Infra-plandeploy:
+    name: 'Terraform Plan & Deploy'
     runs-on: ubuntu-latest
     env:
       ROOT_PATH : '${{github.workspace}}/Terraform'
@@ -67,6 +67,7 @@ jobs:
     # Run a Terraform apply
     - name: Terraform apply
       id: apply
+      working-directory: ${{env.ROOT_PATH}}
       env:
         ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
