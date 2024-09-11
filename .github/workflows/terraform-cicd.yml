@@ -7,7 +7,7 @@ on:
 
 env:
   TF_LOG: INFO
-  ROOT_PATH : '$({GitHub.workspace})/terraform'
+  ROOT_PATH : '$({github.workspace})Terraform'
 
 permissions:
       id-token: write
