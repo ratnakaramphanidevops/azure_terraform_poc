@@ -12,6 +12,11 @@ variable "location" {
 
 variable "location2" {
   type        = string
-  description = "(Optional) Azure region to use. Defaults to East US."
+  description = "(Optional) Azure region to use. Defaults to southeast asia."
+
+  validation {
+    condition     = contains(["southeast asia", "eastus"], var.location2)
+    error_message = "Azure region to use. eastus to southeast asia"
+  } 
   default     = "southeast asia"
 }
