@@ -6,7 +6,7 @@ module "vnet_1" {
 }
 
 module "vnet_2" {
-    source = "../Terraform/vnet.tf"
+    source = "../..Terraform/vnet.tf"
     resource_group_name = module.azurerm_resource_group.rg1.resource_group_name
     location2 = "souteast asia"
     address_space2 = ["192.0.0.0/16"]
